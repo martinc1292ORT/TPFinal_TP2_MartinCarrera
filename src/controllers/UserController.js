@@ -1,11 +1,8 @@
-import UserService from "../services/UserService.js";
-
 class UserController {
   constructor(service) {
     this.userService = service;
   }
 
-  // GET 
   getAllUsers = async (req, res) => {
     try {
       const users = await this.userService.getAllUsers();
@@ -21,7 +18,6 @@ class UserController {
     }
   };
 
-  // POST 
   createUser = async (req, res) => {
     try {
       const { name, mail, pass, roleId} = req.body;
@@ -35,7 +31,7 @@ class UserController {
 
       res.status(201).send({
         success: true,
-        message: user, // { id, name }
+        message: user,
       });
     } catch (error) {
       res.status(400).send({
@@ -45,7 +41,6 @@ class UserController {
     }
   };
 
-  // POST 
   login = async (req, res) => {
     try {
       const { mail, pass } = req.body;
@@ -67,10 +62,9 @@ class UserController {
     }
   };
 
-  // GET
   me = async (req, res) => {
     try {
-      const { user } = req; // viene del middleware authenticate
+      const { user } = req;
       const data = await this.userService.me(user);
       res.status(200).send({
         success: true,

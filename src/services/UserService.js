@@ -45,7 +45,6 @@ class UserService {
     return token;
   };
 
-  //  Devuelve los datos del usuario autenticado
   me = async (user) => {
     return user;
   };

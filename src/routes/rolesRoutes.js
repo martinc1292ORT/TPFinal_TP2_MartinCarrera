@@ -1,30 +1,16 @@
 import { Router } from "express";
+import { roleController } from "../container/container.js";
+import authenticate from "../middlewares/authenticate.js";
+import isAdmin from "../middlewares/isAdmin.js";
 
 const rolesRoutes = Router();
 
-// GET 
-rolesRoutes.get("/", (req, res) => {
-  res.status(200).send({ success: true, message: "get all roles (placeholder)" });
-});
+rolesRoutes.get("/me", authenticate, roleController.getMyRole);
 
-// GET 
-rolesRoutes.get("/:id", (req, res) => {
-  res.status(200).send({ success: true, message: "get role by id (placeholder)" });
-});
-
-// POST 
-rolesRoutes.post("/", (req, res) => {
-  res.status(200).send({ success: true, message: "create role (placeholder)" });
-});
-
-// PUT 
-rolesRoutes.put("/:id", (req, res) => {
-  res.status(200).send({ success: true, message: "update role (placeholder)" });
-});
-
-// DELETE 
-rolesRoutes.delete("/:id", (req, res) => {
-  res.status(200).send({ success: true, message: "delete role (placeholder)" });
-});
+rolesRoutes.get("/", authenticate, isAdmin, roleController.getAll);
+rolesRoutes.get("/:id", authenticate, isAdmin, roleController.getOne);
+rolesRoutes.post("/", authenticate, isAdmin, roleController.create);
+rolesRoutes.put("/:id", authenticate, isAdmin, roleController.update);
+rolesRoutes.delete("/:id", authenticate, isAdmin, roleController.delete);
 
 export default rolesRoutes;

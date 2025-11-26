@@ -1,9 +1,27 @@
-import UserController from "../controllers/UserController.js";
+import { User, Role, Task } from "../models/index.js";
+
 import UserService from "../services/UserService.js";
-import { User, Role } from "../models/index.js";
+import TaskService from "../services/TaskService.js";
+import RoleService from "../services/RoleService.js";
 
-// Inyección de dependencias
+import UserController from "../controllers/UserController.js";
+import TaskController from "../controllers/TaskController.js";
+import RoleController from "../controllers/RoleController.js";
+
+
 const userService = new UserService(User, Role);
-const userController = new UserController(userService);
+const taskService = new TaskService(Task);
+const roleService = new RoleService(Role);
 
-export default userController;
+const userController = new UserController(userService);
+const taskController = new TaskController(taskService);
+const roleController = new RoleController(roleService);
+
+export {
+  userService,
+  taskService,
+  roleService,
+  userController,
+  taskController,
+  roleController,
+};

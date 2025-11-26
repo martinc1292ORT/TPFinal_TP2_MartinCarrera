@@ -11,5 +11,5 @@ export const generateToken = (data) => {
 
 export const verifyToken = (token) => {
   const user = jwt.verify(token, JWT_SECRET);
-  return user;  // user = { data: payload, iat, exp }
+  return user;  
 };

@@ -16,9 +16,9 @@ const connection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
 
 try {
   await connection.authenticate();
-  console.log("🟢 DB Connected successfully.");
+  console.log("🟢 BD conectada.");
 } catch (error) {
-  console.error("🔴 Unable to connect to DB:", error);
+  console.error("🔴 No se pudo conectar a la BD: ", error);
 }
 
 export default connection;

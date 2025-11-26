@@ -4,15 +4,15 @@ const authenticate = (req, res, next) => {
   try {
     const { payload } = req.cookies;
     if (!payload) {
-      throw new Error("User not logged");
+      throw new Error("Usuario no logueado");
     }
-    const decoded = verifyToken(payload); // { data, iat, exp }
+    const decoded = verifyToken(payload);
 
     if (!decoded || !decoded.data) {
-      throw new Error("Invalid token");
+      throw new Error("Token invalido");
     }
     req.user = decoded.data;
-    next(); // va al controlador
+    next();
 
   } catch (error) {
     res.status(401).send({
