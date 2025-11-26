@@ -8,20 +8,27 @@ Task.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [3, 100],
+      },
     },
     description: {
-      type: DataTypes.TEXT, 
+      type: DataTypes.TEXT,
       allowNull: true,
+      validate: {
+        len: [0, 1000]
+      },
     },
     status: {
-      type: DataTypes.ENUM("pendiente", "en_progreso", "hecho"),
+      type: DataTypes.ENUM("PENDIENTE", "EN_PROGRESO", "HECHO"),
       allowNull: false,
-      defaultValue: "pendiente",
+      defaultValue: "PENDIENTE",
     },
     priority: {
-      type: DataTypes.ENUM("baja", "media", "alta"),
+      type: DataTypes.ENUM("BAJA", "MEDIA", "ALTA"),
       allowNull: false,
-      defaultValue: "media",
+      defaultValue: "MEDIA",
     },
 
     userId: {

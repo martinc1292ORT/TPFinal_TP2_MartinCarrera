@@ -14,6 +14,10 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [4, 20],
+      },
     },
     mail: {
       type: DataTypes.STRING,
@@ -21,11 +25,16 @@ User.init(
       unique: true,
       validate: {
         isEmail: true,
+        notEmpty: true,
       },
     },
     pass: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [8, 100],
+      },
     },
     roleId: {
       type: DataTypes.INTEGER,
